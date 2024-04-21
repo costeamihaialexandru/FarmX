@@ -5,8 +5,8 @@ import User from '../models/User';
 const router = express.Router();
 
 // Ruta pentru autentificare
-router.post('/login', async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+router.post('/', async (req: Request, res: Response) => {
+  const {email, password} = req.body;
 
   try {
     // Caută utilizatorul în baza de date după email
@@ -33,8 +33,8 @@ router.post('/login', async (req: Request, res: Response) => {
 });
 
 // Ruta pentru înregistrare
-router.post('/register', async (req: Request, res: Response) => {
-  const { firstName, lastName, email, password, department } = req.body;
+router.post('/authpage', async (req: Request, res: Response) => {
+  const { firstName, lastName, email, password, department, role } = req.body;
 
   try {
     // Verifică dacă există deja un utilizator cu același email
@@ -52,7 +52,8 @@ router.post('/register', async (req: Request, res: Response) => {
       lastName,
       email,
       password: hashedPassword,
-      department
+      department,
+      role
     });
 
     // Salvează utilizatorul în baza de date

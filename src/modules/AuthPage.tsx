@@ -30,6 +30,7 @@ const AuthPage: React.FC = () => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerDepartment, setRegisterDepartment] = useState('');
+  const [registerRole, setRegisterRole] = useState('');
   const classes = useStyles();
 
   const handleLogin = async () => {
@@ -51,7 +52,8 @@ const AuthPage: React.FC = () => {
         lastName: registerLastName,
         email: registerEmail,
         password: registerPassword,
-        department: registerDepartment
+        department: registerDepartment,
+        role: registerRole
       });
       console.log(response.data); // handle successful registration
     } catch (error) {
@@ -135,6 +137,17 @@ const AuthPage: React.FC = () => {
           <MenuItem value="Marketing">Marketing</MenuItem>
           <MenuItem value="Legal">Legal</MenuItem>
           <MenuItem value="Operative">Operative</MenuItem>
+        </Select>
+        <Select
+          className={classes.formGroup}
+          value={registerRole}
+          onChange={(e) => setRegisterRole(e.target.value)}
+          fullWidth
+        >
+          <MenuItem value="">Select Role</MenuItem>
+          <MenuItem value="Director">Director</MenuItem>
+          <MenuItem value="Department Director">Department Director</MenuItem>
+          <MenuItem value="Employee">Employee</MenuItem>
         </Select>
         <Button
           className={classes.button}

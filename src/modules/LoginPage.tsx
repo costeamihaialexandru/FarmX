@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Container, Typography, TextField, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
     container: {
@@ -76,6 +77,7 @@ const LoginPage: React.FC = () => {
           Autentificare
         </Button>
       </div>
+      <p>Nu ai un cont? <Link to="/authpage">Înregistrează-te</Link></p>
     </Container>
   );
 };

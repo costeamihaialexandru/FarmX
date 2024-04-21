@@ -3,7 +3,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 const connectDB = async () => {
   try {
     // Conectare la baza de date MongoDB
-    await mongoose.connect('mongodb://localhost:27017/farmx', {
+    await mongoose.connect('mongodb+srv://costeamcm23:B4wKHKFplLzOCiYD@clusterfarmx.ydhhyap.mongodb.net/?retryWrites=true&w=majority&appName=clusterFarmX', {
       useNewUrlParser: true,
       useUnifiedTopology: true // Pentru a preveni avertismente legate de indexare
     } as ConnectOptions);

@@ -9,10 +9,18 @@ const DashboardPage: React.FC = () => {
         Dashboard
       </Typography>
       <List>
-        <ListItem button component={Link} to="/hr">
-          <ListItemText primary="Resurse Umane" />
+        <ListItem button component={Link} to="/form">
+          <ListItemText primary="Form Page" />
         </ListItem>
-        {/* Alte elemente de meniu pentru alte secțiuni */}
+        <ListItem button component={Link} to="/hr">
+          <ListItemText primary="HR Page" />
+        </ListItem>
+        <ListItem button component={Link} to="/results">
+          <ListItemText primary="Results Page" />
+        </ListItem>
+        <ListItem button component={Link} to="/logout">
+          <ListItemText primary="Logout" />
+        </ListItem>
       </List>
     </Container>
   );
