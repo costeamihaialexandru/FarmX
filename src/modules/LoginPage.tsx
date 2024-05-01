@@ -5,6 +5,7 @@ import { Container, Typography, TextField, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import './LoginPage.css';
 
 const useStyles = makeStyles((theme: Theme) => ({
     container: {

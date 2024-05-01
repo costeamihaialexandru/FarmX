@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Typography, List, ListItem, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
+import './DashboardPage.css';
 
 const DashboardPage: React.FC = () => {
   return (

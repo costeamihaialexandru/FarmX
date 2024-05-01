@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import { getUserDataByRole, getUserDataByDepartment } from './routes/HR'; 
-// import {Employee} from '../models/User';
+import { getUserDataByRole, getUserDataByDepartment, getDepartments } from './Api';
+import './HRPage.css';
+
 
 interface User {
     id: string;
@@ -79,10 +80,17 @@ const HRPage: React.FC = () => {
         getUserDataByRole('director').then((data) => setDirector(data));
 
         // Fetch departments data from MongoDB
-        getUserDataByDepartment().then((data) => setDepartments(data));
+        getDepartments().then((data) => {
+            setDepartments(data);
 
-        // Fetch users data from MongoDB
-        getUserDataByDepartment().then((data) => setUsers(data));
+            // Fetch users data from MongoDB for each department
+            Promise.all(data.map((department: Department) => getUserDataByDepartment(department.id)))
+                .then((usersByDepartment) => {
+                    // Flatten the array of arrays into a single array
+                    const allUsers = usersByDepartment.flat();
+                    setUsers(allUsers);
+                });
+        });
     }, []);
 
     if (!director || departments.length === 0 || users.length === 0) {
