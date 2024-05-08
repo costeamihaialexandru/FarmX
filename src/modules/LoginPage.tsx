@@ -1,38 +1,36 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Typography, TextField, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import { Theme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
-import './LoginPage.css';
+import styled from 'styled-components';
 
-const useStyles = makeStyles((theme: Theme) => ({
-    container: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh',
-      backgroundColor: theme.palette.background.default,
-    },
-    formContainer: {
-      width: 300,
-      padding: 20,
-      backgroundColor: theme.palette.background.paper,
-    },
-    formGroup: {
-      marginBottom: 20,
-    },
-    button: {
-      marginTop: 20,
-    },
-  }));
+
+const StyledContainer = styled(Container)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: ${({ theme }) => theme?.palette?.background?.default ?? '#f5f5f5'};
+`;
+
+const FormContainer = styled.div`
+  width: 300px;
+  padding: 20px;
+  background-color: ${({ theme }) => theme?.palette?.background?.paper ?? '#ffffff'};
+`;
+
+const FormGroup = styled.div`
+  margin-bottom: 20px;
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 20px;
+`;
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const classes = useStyles();
-  const navigate = useNavigate(); // Obținem funcția navigate
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -40,8 +38,7 @@ const LoginPage: React.FC = () => {
         email,
         password
       });
-      console.log(response.data); // tratamentul autentificării reușite
-      // Redirecționare către pagina Dashboard după autentificare
+      console.log(response.data);
       navigate('/dashboard');
     } catch (error) {
       console.error('Autentificarea a eșuat:', error);
@@ -49,37 +46,38 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Container className={classes.container}>
-      <div className={classes.formContainer}>
+    <StyledContainer>
+      <FormContainer>
         <Typography variant="h5" gutterBottom>
           Autentificare
         </Typography>
-        <TextField
-          className={classes.formGroup}
-          label="Email"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          className={classes.formGroup}
-          label="Parolă"
-          type="password"
-          fullWidth
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button
-          className={classes.button}
+        <FormGroup>
+          <TextField
+            label="Email"
+            fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <TextField
+            label="Parolă"
+            type="password"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormGroup>
+        <StyledButton
           variant="contained"
           color="primary"
           onClick={handleLogin}
         >
           Autentificare
-        </Button>
-      </div>
+        </StyledButton>
+      </FormContainer>
       <p>Nu ai un cont? <Link to="/authpage">Înregistrează-te</Link></p>
-    </Container>
+    </StyledContainer>
   );
 };
 
